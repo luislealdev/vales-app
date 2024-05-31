@@ -19,6 +19,81 @@ class SideMenuState extends ConsumerState<SideMenu> {
     final hasNotch = MediaQuery.of(context).viewPadding.top > 35;
     final textStyles = Theme.of(context).textTheme;
 
+    final menuItems = [
+      {'text': "Inicio", 'icon': Icons.home_outlined, 'url': "/"},
+      {'text': "Mi perfil", 'icon': Icons.person_outline, 'url': "/profile"},
+      {
+        'text': "Estado de cuenta",
+        'icon': Icons.monetization_on_outlined,
+        'url': "/account_status"
+      },
+      {'text': "Clientes", 'icon': Icons.people_outline, 'url': "/clients"},
+      {
+        'text': "Referencias Bancarias",
+        'icon': Icons.credit_card_outlined,
+        'url': "/bank_references"
+      },
+      {
+        'text': "Vale puntos",
+        'icon': Icons.star_border_outlined,
+        'url': "/vale_points"
+      },
+      {'text': "Noticias", 'icon': Icons.newspaper_outlined, 'url': "/news"},
+      {
+        'text': "Vale conmigo",
+        'icon': Icons.school_outlined,
+        'url': "/vale_with_me"
+      },
+      {
+        'text': "Capacitación",
+        'icon': Icons.tag_faces_sharp,
+        'url': "/training"
+      },
+      {
+        'text': "Vale electrónico",
+        'icon': Icons.receipt_outlined,
+        'url': "/electronic_vale"
+      },
+      {
+        'text': "Crédito revolvente",
+        'icon': Icons.attach_money_outlined,
+        'url': "/revolving_credit"
+      },
+      {
+        'text': "Centro de mensajes",
+        'icon': Icons.message_outlined,
+        'url': "/message_center"
+      },
+      {
+        'text': "Notificaciones",
+        'icon': Icons.notifications_active_outlined,
+        'url': "/notifications"
+      },
+      {'text': "Contacto", 'icon': Icons.info_outline, 'url': "/contact"},
+      {
+        'text': "Herramientas",
+        'icon': Icons.engineering_outlined,
+        'url': "/tools"
+      },
+      {
+        'text': "Términos y condiciones",
+        'icon': Icons.backup_table_sharp,
+        'url': "/terms_and_conditions"
+      },
+      {
+        'text': "Cerrar sesión",
+        'icon': Icons.output_outlined,
+        'url': "/logout"
+      },
+    ];
+
+    List<NavigationDrawerDestination> navigationDestinations = menuItems
+        .map((item) => NavigationDrawerDestination(
+              icon: Icon(item['icon'] as IconData),
+              label: Text(item['text'] as String),
+            ))
+        .toList();
+
     return NavigationDrawer(
         elevation: 1,
         selectedIndex: navDrawerIndex,
@@ -27,110 +102,27 @@ class SideMenuState extends ConsumerState<SideMenu> {
             navDrawerIndex = value;
           });
 
-          // final menuItem = appMenuItems[value];
-          context.push( '/profile' );
+          // Navegar a la URL correspondiente
+          final menuItem = menuItems[value];
+          context.push(menuItem['url'] as String);
           widget.scaffoldKey.currentState?.closeDrawer();
         },
         children: [
           Padding(
             padding: EdgeInsets.fromLTRB(20, hasNotch ? 30 : 20, 16, 0),
-            // child: Text('Saludos', style: textStyles.titleMedium),
+            child: Text('Saludos', style: textStyles.titleMedium),
           ),
-
-          // Padding(
-          //   padding: const EdgeInsets.fromLTRB(20, 0, 16, 10),
-          //   child: Text('Tony Stark', style: textStyles.titleSmall ),
-          // ),
-
-          const NavigationDrawerDestination(
-            icon: Icon(Icons.home_outlined),
-            label: Text('Inicio'),
-          ),
-          const NavigationDrawerDestination(
-            icon: Icon(Icons.person_outline),
-            label: Text('Mi perfil'),
-          ),
-          const NavigationDrawerDestination(
-            icon: Icon(Icons.monetization_on_outlined),
-            label: Text('Estado de cuenta'),
-          ),
-          const NavigationDrawerDestination(
-            icon: Icon(Icons.people_outline),
-            label: Text('Clientes'),
-          ),
-          const NavigationDrawerDestination(
-            icon: Icon(Icons.credit_card_outlined),
-            label: Text('Referencias Bancarias'),
-          ),
-          const NavigationDrawerDestination(
-            icon: Icon(Icons.star_border_outlined),
-            label: Text('Vale puntos'),
-          ),
-          const NavigationDrawerDestination(
-            icon: Icon(Icons.newspaper_outlined),
-            label: Text('Noticias'),
-          ),
-          const NavigationDrawerDestination(
-            icon: Icon(Icons.school_outlined),
-            label: Text('Vale conmigo'),
-          ),
-          const NavigationDrawerDestination(
-            icon: Icon(Icons.tag_faces_sharp),
-            label: Text('Capacitación'),
-          ),
-          const NavigationDrawerDestination(
-            icon: Icon(Icons.receipt_outlined),
-            label: Text('Vale electrónico'),
-          ),
-          const NavigationDrawerDestination(
-            icon: Icon(Icons.attach_money_outlined),
-            label: Text('Crédito revolvente'),
-          ),
-          const NavigationDrawerDestination(
-            icon: Icon(Icons.message_outlined),
-            label: Text('Centro de mensajes'),
-          ),
-          const NavigationDrawerDestination(
-            icon: Icon(Icons.notifications_active_outlined),
-            label: Text('Notificaciones'),
-          ),
+          ...navigationDestinations.take(13), // Toma los primeros 13 destinos
 
           const Padding(
             padding: EdgeInsets.fromLTRB(28, 16, 28, 10),
             child: Divider(),
           ),
-
           const Padding(
             padding: EdgeInsets.fromLTRB(28, 10, 16, 10),
             child: Text('Otras opciones'),
           ),
-
-          const NavigationDrawerDestination(
-            icon: Icon(Icons.info_outline),
-            label: Text('Contacto'),
-          ),
-          const NavigationDrawerDestination(
-            icon: Icon(Icons.engineering_outlined),
-            label: Text('Herramientas'),
-          ),
-          const NavigationDrawerDestination(
-            icon: Icon(Icons.backup_table_sharp),
-            label: Text('Términos y condiciones'),
-          ),
-          const NavigationDrawerDestination(
-            icon: Icon(Icons.output_outlined),
-            label: Text('Cerrar sesión'),
-          ),
-
-          // Padding(
-          //   padding: const EdgeInsets.symmetric(horizontal: 20),
-          //   child: CustomFilledButton(
-          //     onPressed: () {
-          //       ref.read(authProvider.notifier).logout();
-          //     },
-          //     text: 'Cerrar sesión'
-          //   ),
-          // ),
+          ...navigationDestinations.skip(13), // Toma los destinos restantes
         ]);
   }
 }
