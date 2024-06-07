@@ -3,16 +3,31 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 class SideMenu extends ConsumerStatefulWidget {
-  final GlobalKey<ScaffoldState> scaffoldKey;
+  final int currentIndex;
 
-  const SideMenu({super.key, required this.scaffoldKey});
+  const SideMenu({required this.currentIndex, super.key});
 
   @override
   SideMenuState createState() => SideMenuState();
 }
 
 class SideMenuState extends ConsumerState<SideMenu> {
-  int navDrawerIndex = 0;
+  late int navDrawerIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    navDrawerIndex = widget.currentIndex;
+  }
+
+  void onItemTapped(int index, String url) {
+    setState(() {
+      navDrawerIndex = index;
+    });
+
+    context.go(url);
+    Navigator.of(context).pop(); // Cierra el Drawer
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +35,8 @@ class SideMenuState extends ConsumerState<SideMenu> {
     final textStyles = Theme.of(context).textTheme;
 
     final menuItems = [
-      {'text': "Inicio", 'icon': Icons.home_outlined, 'url': "/"},
-      {'text': "Mi perfil", 'icon': Icons.person_outline, 'url': "/profile"},
+      {'text': "Inicio", 'icon': Icons.home_outlined, 'url': "/home/0"},
+      {'text': "Mi perfil", 'icon': Icons.person_outline, 'url': "/home/1"},
       {
         'text': "Estado de cuenta",
         'icon': Icons.monetization_on_outlined,
@@ -69,6 +84,14 @@ class SideMenuState extends ConsumerState<SideMenu> {
         'icon': Icons.notifications_active_outlined,
         'url': "/notifications"
       },
+      {
+        'text': "Cerrar sesión",
+        'icon': Icons.output_outlined,
+        'url': "/logout"
+      },
+    ];
+
+    final otherOptions = [
       {'text': "Contacto", 'icon': Icons.info_outline, 'url': "/contact"},
       {
         'text': "Herramientas",
@@ -80,50 +103,37 @@ class SideMenuState extends ConsumerState<SideMenu> {
         'icon': Icons.backup_table_sharp,
         'url': "/terms_and_conditions"
       },
-      {
-        'text': "Cerrar sesión",
-        'icon': Icons.output_outlined,
-        'url': "/logout"
-      },
     ];
 
-    List<NavigationDrawerDestination> navigationDestinations = menuItems
-        .map((item) => NavigationDrawerDestination(
-              icon: Icon(item['icon'] as IconData),
-              label: Text(item['text'] as String),
-            ))
-        .toList();
-
-    return NavigationDrawer(
-      elevation: 1,
-      selectedIndex: navDrawerIndex,
-      onDestinationSelected: (value) {
-        setState(() {
-          navDrawerIndex = value;
-        });
-
-        // Navegar a la URL correspondiente
-        final menuItem = menuItems[value];
-        context.push(menuItem['url'] as String);
-        widget.scaffoldKey.currentState?.closeDrawer();
-      },
-      children: [
-        Padding(
-          padding: EdgeInsets.fromLTRB(20, hasNotch ? 30 : 20, 16, 0),
-          child: Text('Saludos', style: textStyles.titleMedium),
-        ),
-        ...navigationDestinations.take(13), // Toma los primeros 13 destinos
-
-        const Padding(
-          padding: EdgeInsets.fromLTRB(28, 16, 28, 10),
-          child: Divider(),
-        ),
-        const Padding(
-          padding: EdgeInsets.fromLTRB(28, 10, 16, 10),
-          child: Text('Otras opciones'),
-        ),
-        ...navigationDestinations.skip(13), // Toma los destinos restantes
-      ],
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          Padding(
+            padding: EdgeInsets.fromLTRB(20, hasNotch ? 100 : 20, 16, 0),
+            child: Text('Saludos', style: textStyles.titleMedium),
+          ),
+          for (int i = 0; i < menuItems.length; i++)
+            ListTile(
+              leading: Icon(menuItems[i]['icon'] as IconData),
+              title: Text(menuItems[i]['text'] as String),
+              selected: navDrawerIndex == i,
+              onTap: () => onItemTapped(i, menuItems[i]['url'] as String),
+            ),
+          const Divider(),
+          const ListTile(
+            title: Text('Otras opciones'),
+          ),
+          for (int i = 0; i < otherOptions.length; i++)
+            ListTile(
+              leading: Icon(otherOptions[i]['icon'] as IconData),
+              title: Text(otherOptions[i]['text'] as String),
+              onTap: () => onItemTapped(i, otherOptions[i]['url'] as String),
+            ),
+            const SizedBox(height: 50),
+          // Agrega más opciones aquí si es necesario
+        ],
+      ),
     );
   }
 }

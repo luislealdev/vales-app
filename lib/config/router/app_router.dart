@@ -1,30 +1,20 @@
 import 'package:go_router/go_router.dart';
-import 'package:vales_app/features/admin/admin.dart';
+import 'package:vales_app/features/admin/presentation/screens/home_screen.dart';
 
 final appRouter = GoRouter(
-  initialLocation: '/',
+  initialLocation: '/home/0',
   routes: [
-    ///* Auth Routes
     GoRoute(
-      path: '/login',
-      builder: (context, state) => const AdminScreen(),
+      path: '/home/:page',
+      name: HomeScreen.name,
+      builder: (context, state) {
+        final pageIndex = int.tryParse(state.pathParameters['page'] ?? '0') ?? 0;
+        return HomeScreen(pageIndex: pageIndex);
+      },
     ),
-    GoRoute(
-      path: '/register',
-      builder: (context, state) => const AdminScreen(),
-    ),
-
-    ///* Home router
     GoRoute(
       path: '/',
-      builder: (context, state) => const AdminScreen(),
-    ),
-
-    GoRoute(
-      path: '/profile',
-      builder: (context, state) => const ProfileScreen(),
+      redirect: (_, __) => '/home/0',
     ),
   ],
-
-  ///! TODO: Bloquear si no se está autenticado de alguna manera
 );
