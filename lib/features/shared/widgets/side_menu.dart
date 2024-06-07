@@ -95,34 +95,35 @@ class SideMenuState extends ConsumerState<SideMenu> {
         .toList();
 
     return NavigationDrawer(
-        elevation: 1,
-        selectedIndex: navDrawerIndex,
-        onDestinationSelected: (value) {
-          setState(() {
-            navDrawerIndex = value;
-          });
+      elevation: 1,
+      selectedIndex: navDrawerIndex,
+      onDestinationSelected: (value) {
+        setState(() {
+          navDrawerIndex = value;
+        });
 
-          // Navegar a la URL correspondiente
-          final menuItem = menuItems[value];
-          context.push(menuItem['url'] as String);
-          widget.scaffoldKey.currentState?.closeDrawer();
-        },
-        children: [
-          Padding(
-            padding: EdgeInsets.fromLTRB(20, hasNotch ? 30 : 20, 16, 0),
-            child: Text('Saludos', style: textStyles.titleMedium),
-          ),
-          ...navigationDestinations.take(13), // Toma los primeros 13 destinos
+        // Navegar a la URL correspondiente
+        final menuItem = menuItems[value];
+        context.push(menuItem['url'] as String);
+        widget.scaffoldKey.currentState?.closeDrawer();
+      },
+      children: [
+        Padding(
+          padding: EdgeInsets.fromLTRB(20, hasNotch ? 30 : 20, 16, 0),
+          child: Text('Saludos', style: textStyles.titleMedium),
+        ),
+        ...navigationDestinations.take(13), // Toma los primeros 13 destinos
 
-          const Padding(
-            padding: EdgeInsets.fromLTRB(28, 16, 28, 10),
-            child: Divider(),
-          ),
-          const Padding(
-            padding: EdgeInsets.fromLTRB(28, 10, 16, 10),
-            child: Text('Otras opciones'),
-          ),
-          ...navigationDestinations.skip(13), // Toma los destinos restantes
-        ]);
+        const Padding(
+          padding: EdgeInsets.fromLTRB(28, 16, 28, 10),
+          child: Divider(),
+        ),
+        const Padding(
+          padding: EdgeInsets.fromLTRB(28, 10, 16, 10),
+          child: Text('Otras opciones'),
+        ),
+        ...navigationDestinations.skip(13), // Toma los destinos restantes
+      ],
+    );
   }
 }
