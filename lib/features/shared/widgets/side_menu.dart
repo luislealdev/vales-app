@@ -40,7 +40,7 @@ class SideMenuState extends ConsumerState<SideMenu> {
       {
         'text': "Estado de cuenta",
         'icon': Icons.monetization_on_outlined,
-        'url': "/account_status"
+        'url': "/home/2"
       },
       {'text': "Clientes", 'icon': Icons.people_outline, 'url': "/clients"},
       {
@@ -130,7 +130,7 @@ class SideMenuState extends ConsumerState<SideMenu> {
               title: Text(otherOptions[i]['text'] as String),
               onTap: () => onItemTapped(i, otherOptions[i]['url'] as String),
             ),
-            const SizedBox(height: 50),
+          const SizedBox(height: 50),
           // Agrega más opciones aquí si es necesario
         ],
       ),

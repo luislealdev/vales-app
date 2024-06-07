@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vales_app/features/admin/admin.dart';
+import 'package:vales_app/features/admin/presentation/views/account_status_view.dart';
 import 'package:vales_app/features/shared/widgets/side_menu.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -29,7 +30,11 @@ class _HomeScreenState extends State<HomeScreen>
     super.dispose();
   }
 
-  final viewRoutes = const <Widget>[HomeView(), ProfileView()];
+  final viewRoutes = const <Widget>[
+    HomeView(),
+    ProfileView(),
+    AccountStatusView()
+  ];
 
   @override
   Widget build(BuildContext context) {
