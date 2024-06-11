@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:vales_app/features/admin/admin.dart';
 import 'package:vales_app/features/admin/presentation/views/account_status_view.dart';
+import 'package:vales_app/features/admin/presentation/views/bank_references_view.dart';
+import 'package:vales_app/features/admin/presentation/views/clients_view.dart';
+import 'package:vales_app/features/admin/presentation/views/electronic_coupon_view.dart';
 import 'package:vales_app/features/shared/widgets/side_menu.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -31,9 +34,12 @@ class _HomeScreenState extends State<HomeScreen>
   }
 
   final viewRoutes = const <Widget>[
-    HomeView(),
+    ElectronicCouponView(),
+    // HomeView(),
     ProfileView(),
-    AccountStatusView()
+    AccountStatusView(),
+    ClientsView(),
+    BankReferencesView()
   ];
 
   @override
@@ -67,10 +73,12 @@ class _HomeScreenState extends State<HomeScreen>
         shape:
             ShapeBorder.lerp(const CircleBorder(), const StadiumBorder(), 0.5),
         onPressed: () {},
-        child: const Icon(Icons.facebook, color: Colors.white),
+        child: const Image(
+            image: AssetImage("assets/icons/whatsapp.png"),
+            height: 30,
+            width: 30),
       ),
       body: PageView(
-        //* Esto evitará que rebote
         physics: const NeverScrollableScrollPhysics(),
         controller: pageController,
         // index: pageIndex,

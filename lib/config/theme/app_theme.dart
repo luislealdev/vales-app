@@ -16,14 +16,14 @@ class AppTheme {
       textTheme: TextTheme(
           titleLarge: GoogleFonts.montserratAlternates()
               .copyWith(fontSize: 40, fontWeight: FontWeight.bold),
-          titleMedium: GoogleFonts.montserratAlternates()
-              .copyWith(fontSize: 30, fontWeight: FontWeight.bold, color: subtitleColor),
+          titleMedium: GoogleFonts.montserratAlternates().copyWith(
+              fontSize: 30, fontWeight: FontWeight.bold, color: subtitleColor),
           titleSmall:
               GoogleFonts.montserratAlternates().copyWith(fontSize: 20)),
 
       ///* Scaffold Background Color
       scaffoldBackgroundColor: scaffoldBackgroundColor,
-      
+
       ///* Buttons
       filledButtonTheme: FilledButtonThemeData(
           style: ButtonStyle(

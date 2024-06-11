@@ -42,16 +42,24 @@ class HomeView extends StatelessWidget {
                 children: [
                   Text("Saldo global disponible", textAlign: TextAlign.left),
                   Divider(),
+                  SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Column(
                         children: [
-                          Text("Saldo disponible para tienda"),
-                          // Text("$50,000.00")
+                          Text("\$50,000.00", style: TextStyle(fontSize: 20)),
+                          Text("Saldo disponible \n para tienda",
+                              textAlign: TextAlign.center),
                         ],
                       ),
-                      Text("Saldo disponible para financiero"),
+                      Column(
+                        children: [
+                          Text("\$50,000.00", style: TextStyle(fontSize: 20)),
+                          Text("Saldo disponible \n para financiero",
+                              textAlign: TextAlign.center),
+                        ],
+                      ),
                     ],
                   ),
                 ],

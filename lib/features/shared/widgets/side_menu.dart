@@ -42,11 +42,11 @@ class SideMenuState extends ConsumerState<SideMenu> {
         'icon': Icons.monetization_on_outlined,
         'url': "/home/2"
       },
-      {'text': "Clientes", 'icon': Icons.people_outline, 'url': "/clients"},
+      {'text': "Clientes", 'icon': Icons.people_outline, 'url': "/home/3"},
       {
         'text': "Referencias Bancarias",
         'icon': Icons.credit_card_outlined,
-        'url': "/bank_references"
+        'url': "/home/4"
       },
       {
         'text': "Vale puntos",
@@ -111,7 +111,7 @@ class SideMenuState extends ConsumerState<SideMenu> {
         children: [
           Padding(
             padding: EdgeInsets.fromLTRB(20, hasNotch ? 100 : 20, 16, 0),
-            child: Text('Saludos', style: textStyles.titleMedium),
+            child: Text('ValesApp', style: textStyles.titleMedium),
           ),
           for (int i = 0; i < menuItems.length; i++)
             ListTile(
