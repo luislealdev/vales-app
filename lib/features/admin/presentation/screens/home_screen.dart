@@ -3,7 +3,17 @@ import 'package:vales_app/features/admin/admin.dart';
 import 'package:vales_app/features/admin/presentation/views/account_status_view.dart';
 import 'package:vales_app/features/admin/presentation/views/bank_references_view.dart';
 import 'package:vales_app/features/admin/presentation/views/clients_view.dart';
+import 'package:vales_app/features/admin/presentation/views/contact_view.dart';
+import 'package:vales_app/features/admin/presentation/views/credit_view.dart';
 import 'package:vales_app/features/admin/presentation/views/electronic_coupon_view.dart';
+import 'package:vales_app/features/admin/presentation/views/learning_view.dart';
+import 'package:vales_app/features/admin/presentation/views/message_center_view.dart';
+import 'package:vales_app/features/admin/presentation/views/news_view.dart';
+import 'package:vales_app/features/admin/presentation/views/notificacions_view.dart';
+import 'package:vales_app/features/admin/presentation/views/points_view.dart';
+import 'package:vales_app/features/admin/presentation/views/terms_conditions_view.dart';
+import 'package:vales_app/features/admin/presentation/views/tools_view.dart';
+import 'package:vales_app/features/admin/presentation/views/with_me_view.dart';
 import 'package:vales_app/features/shared/widgets/side_menu.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -34,12 +44,23 @@ class _HomeScreenState extends State<HomeScreen>
   }
 
   final viewRoutes = const <Widget>[
-    ElectronicCouponView(),
-    // HomeView(),
+    HomeView(),
     ProfileView(),
     AccountStatusView(),
     ClientsView(),
-    BankReferencesView()
+    BankReferencesView(),
+    PointsView(),
+    NewsView(),
+    WithMeView(),
+    LearningView(),
+    ElectronicCouponView(),
+    CreditView(),
+    MessageCenterView(),
+    NotificacionsView(),
+    Text("Close sesion"),
+    ContactView(),
+    ToolsView(),
+    TermsConditionsView()
   ];
 
   @override

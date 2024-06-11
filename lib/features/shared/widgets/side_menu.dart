@@ -51,57 +51,49 @@ class SideMenuState extends ConsumerState<SideMenu> {
       {
         'text': "Vale puntos",
         'icon': Icons.star_border_outlined,
-        'url': "/vale_points"
+        'url': "/home/5"
       },
-      {'text': "Noticias", 'icon': Icons.newspaper_outlined, 'url': "/news"},
-      {
-        'text': "Vale conmigo",
-        'icon': Icons.school_outlined,
-        'url': "/vale_with_me"
-      },
-      {
-        'text': "Capacitación",
-        'icon': Icons.tag_faces_sharp,
-        'url': "/training"
-      },
+      {'text': "Noticias", 'icon': Icons.newspaper_outlined, 'url': "/home/6"},
+      {'text': "Vale conmigo", 'icon': Icons.school_outlined, 'url': "/home/7"},
+      {'text': "Capacitación", 'icon': Icons.tag_faces_sharp, 'url': "/home/8"},
       {
         'text': "Vale electrónico",
         'icon': Icons.receipt_outlined,
-        'url': "/electronic_vale"
+        'url': "/home/9"
       },
       {
         'text': "Crédito revolvente",
         'icon': Icons.attach_money_outlined,
-        'url': "/revolving_credit"
+        'url': "/home/10"
       },
       {
         'text': "Centro de mensajes",
         'icon': Icons.message_outlined,
-        'url': "/message_center"
+        'url': "/home/11"
       },
       {
         'text': "Notificaciones",
         'icon': Icons.notifications_active_outlined,
-        'url': "/notifications"
+        'url': "/home/12"
       },
       {
         'text': "Cerrar sesión",
         'icon': Icons.output_outlined,
-        'url': "/logout"
+        'url': "/home/13"
       },
     ];
 
     final otherOptions = [
-      {'text': "Contacto", 'icon': Icons.info_outline, 'url': "/contact"},
+      {'text': "Contacto", 'icon': Icons.info_outline,         'url': "/home/14"},
       {
         'text': "Herramientas",
         'icon': Icons.engineering_outlined,
-        'url': "/tools"
+        'url': "/home/15"
       },
       {
         'text': "Términos y condiciones",
         'icon': Icons.backup_table_sharp,
-        'url': "/terms_and_conditions"
+        'url': "/home/16"
       },
     ];
 
