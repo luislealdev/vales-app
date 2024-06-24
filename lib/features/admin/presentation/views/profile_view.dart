@@ -6,6 +6,8 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color color = Theme.of(context).primaryColor;
+
     return SingleChildScrollView(
       padding: const EdgeInsets.all(30.0),
       child: Column(
@@ -60,9 +62,9 @@ class ProfileView extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  decoration: const BoxDecoration(
-                    color: Colors.pink,
-                    borderRadius: BorderRadius.all(Radius.circular(100)),
+                  decoration: BoxDecoration(
+                    color: color,
+                    borderRadius: const BorderRadius.all(Radius.circular(100)),
                   ),
                   child: const Padding(
                     padding: EdgeInsets.all(40.0),
@@ -93,9 +95,9 @@ class ProfileView extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  decoration: const BoxDecoration(
-                    color: Colors.pink,
-                    borderRadius: BorderRadius.all(Radius.circular(100)),
+                  decoration: BoxDecoration(
+                    color: color,
+                    borderRadius: const BorderRadius.all(Radius.circular(100)),
                   ),
                   child: const Padding(
                     padding: EdgeInsets.all(40.0),
@@ -148,12 +150,14 @@ class _ProfileCardInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color color = Theme.of(context).primaryColor;
+
     return Column(
       children: [
         Container(
-          decoration: const BoxDecoration(
-            color: Colors.pink,
-            borderRadius: BorderRadius.all(Radius.circular(100)),
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: const BorderRadius.all(Radius.circular(100)),
           ),
           child: Padding(
             padding: const EdgeInsets.all(40.0),

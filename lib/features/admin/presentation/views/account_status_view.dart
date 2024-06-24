@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vales_app/features/shared/shared.dart';
+import 'package:vales_app/features/shared/widgets/stat_row.dart';
 
 class AccountStatusView extends StatelessWidget {
   const AccountStatusView({super.key});
@@ -19,13 +20,13 @@ class AccountStatusView extends StatelessWidget {
                         TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                 Divider(),
                 SizedBox(height: 10),
-                _StatRow(description: "Vales canjeados", value: "10"),
+                StatRow(description: "Vales canjeados", value: "10"),
                 SizedBox(height: 5),
-                _StatRow(description: "Libera Calzado", value: "7"),
+                StatRow(description: "Libera Calzado", value: "7"),
                 SizedBox(height: 5),
-                _StatRow(description: "Libera Financiero", value: "18"),
+                StatRow(description: "Libera Financiero", value: "18"),
                 SizedBox(height: 15),
-                _StatRow(description: "Total a pagar", value: "1,000.00"),
+                StatRow(description: "Total a pagar", value: "\$1,000.00"),
                 SizedBox(height: 50),
                 Text("Descargas"),
                 SizedBox(height: 10),
@@ -33,7 +34,15 @@ class AccountStatusView extends StatelessWidget {
                 SizedBox(height: 5),
                 _IconRow(description: "Recibos de clientes", icon: Icons.print),
                 SizedBox(height: 5),
-                _IconRow(description: "Envío de whatsapp", icon: Icons.print),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Envío de whatsapp", style: TextStyle(fontSize: 16)),
+                    Image(
+                        image: AssetImage("assets/icons/whatsapp-black.png"),
+                        width: 22)
+                  ],
+                )
               ],
             )),
             SizedBox(height: 20),
@@ -56,24 +65,6 @@ class AccountStatusView extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class _StatRow extends StatelessWidget {
-  final String description;
-  final String value;
-
-  const _StatRow({required this.description, required this.value});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(description, style: const TextStyle(fontSize: 16)),
-        Text(value, style: const TextStyle(fontSize: 16, color: Colors.green))
-      ],
     );
   }
 }
