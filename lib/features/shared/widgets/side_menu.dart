@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:vales_app/features/auth/presentation/providers/auth_provider.dart';
 
 class SideMenu extends ConsumerStatefulWidget {
   final int currentIndex;
@@ -25,7 +26,13 @@ class SideMenuState extends ConsumerState<SideMenu> {
       navDrawerIndex = index;
     });
 
-    context.go(url);
+    if (url == "/home/13") {
+      // Llamar al método logout
+      ref.read(authProvider.notifier).logout();
+    } else {
+      context.go(url);
+    }
+
     Navigator.of(context).pop(); // Cierra el Drawer
   }
 
@@ -84,7 +91,7 @@ class SideMenuState extends ConsumerState<SideMenu> {
     ];
 
     final otherOptions = [
-      {'text': "Contacto", 'icon': Icons.info_outline,         'url': "/home/14"},
+      {'text': "Contacto", 'icon': Icons.info_outline, 'url': "/home/14"},
       {
         'text': "Herramientas",
         'icon': Icons.engineering_outlined,

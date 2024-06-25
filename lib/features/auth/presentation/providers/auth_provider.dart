@@ -29,12 +29,11 @@ class AuthNotifier extends StateNotifier<AuthState> {
 
     try {
       final user = await authRepository.login(email, password);
-            print("hey");
       _setLoggedUser(user);
     } on CustomError catch (e) {
       logout(e.message);
     } catch (e) {
-      logout('Error no controlado');
+      logout('Correo o contraseña incorrectos');
     }
 
     // final user = await authRepository.login(email, password);

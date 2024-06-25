@@ -81,9 +81,14 @@ class _LoginForm extends ConsumerWidget {
       padding: const EdgeInsets.symmetric(horizontal: 50),
       child: Column(
         children: [
+          const SizedBox(height: 100),
+          const Image(
+              image: AssetImage(
+            "assets/images/logo.png",
+          )),
           const SizedBox(height: 50),
-          Text('Login', style: textStyles.titleLarge),
-          const SizedBox(height: 90),
+          Text('Iniciar sesión', style: textStyles.titleSmall),
+          const SizedBox(height: 40),
           CustomTextFormField(
             label: 'Correo',
             keyboardType: TextInputType.emailAddress,
@@ -111,17 +116,8 @@ class _LoginForm extends ConsumerWidget {
                   onPressed: loginForm.isPosting
                       ? null
                       : ref.read(loginFormProvider.notifier).onFormSubmit)),
-          const Spacer(flex: 2),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: [
-          //     const Text('¿No tienes cuenta?'),
-          //     TextButton(
-          //         onPressed: () => context.push('/register'),
-          //         child: const Text('Crea una aquí'))
-          //   ],
-          // ),
-          // const Spacer(flex: 1),
+          TextButton(
+              onPressed: () {}, child: const Text("¿OLVIDASTE TU CONTRASEÑA?")),
         ],
       ),
     );
