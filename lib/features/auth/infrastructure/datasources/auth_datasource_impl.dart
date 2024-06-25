@@ -11,8 +11,16 @@ class AuthDataSourceImpl extends AuthDataSource {
   @override
   Future<User> checkAuthStatus(String token) async {
     try {
-      final response = await dio.get('/auth/check-status',
-          options: Options(headers: {'Authorization': 'Bearer $token'}));
+      final response = await dio.get(
+        '/auth/check-status',
+        options: Options(headers: {'Authorization': 'Bearer $token'}),
+      );
+
+      if (response.data['ok'] == false &&
+          response.data['message'] ==
+              'Cuenta desactivada. Por favor, contacte al administrador.') {
+        throw CustomError(response.data['message']);
+      }
 
       final user = UserMapper.userJsonToEntity(response.data);
       return user;
@@ -20,9 +28,10 @@ class AuthDataSourceImpl extends AuthDataSource {
       if (e.response?.statusCode == 401) {
         throw CustomError('Token incorrecto');
       }
-      throw Exception();
+      throw CustomError(
+          'Error desconocido al verificar el estado de autenticación');
     } catch (e) {
-      throw Exception();
+      throw CustomError('Error desconocido');
     }
   }
 

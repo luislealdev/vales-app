@@ -38,7 +38,7 @@ final goRouterProvider = Provider((ref) {
     ],
     redirect: (context, state) {
       final isGoingTo =
-          state.matchedLocation; // Usar 'location' en lugar de 'subloc'
+          state.matchedLocation;
       final authStatus = goRouterNotifier.authStatus;
 
       if (isGoingTo == '/splash' && authStatus == AuthStatus.checking) {

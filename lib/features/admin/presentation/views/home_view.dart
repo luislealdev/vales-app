@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:vales_app/features/auth/presentation/providers/auth_provider.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends ConsumerWidget {
   const HomeView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final authState = ref.watch(authProvider);
+
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20.0),
       child: Column(
@@ -13,20 +17,20 @@ class HomeView extends StatelessWidget {
             color: Colors.white,
             width: double.infinity,
             padding: const EdgeInsets.all(20),
-            child: const Row(
+            child: Row(
               children: [
-                Icon(Icons.person_pin, size: 50),
-                SizedBox(width: 5),
+                const Icon(Icons.person_pin, size: 50),
+                const SizedBox(width: 5),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Araceli Medina',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      authState.user?.name ?? 'Nombre del usuario',
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      'Correo electrónico del administrador',
-                      style: TextStyle(fontSize: 12),
+                      authState.user?.email ?? 'Correo electrónico del usuario',
+                      style: const TextStyle(fontSize: 12),
                     ),
                   ],
                 )
@@ -35,35 +39,36 @@ class HomeView extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           Container(
-              color: Colors.white,
-              width: double.infinity,
-              padding: const EdgeInsets.all(20),
-              child: const Column(
-                children: [
-                  Text("Saldo global disponible", textAlign: TextAlign.left),
-                  Divider(),
-                  SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        children: [
-                          Text("\$50,000.00", style: TextStyle(fontSize: 20)),
-                          Text("Saldo disponible \n para tienda",
-                              textAlign: TextAlign.center),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Text("\$50,000.00", style: TextStyle(fontSize: 20)),
-                          Text("Saldo disponible \n para financiero",
-                              textAlign: TextAlign.center),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              )),
+            color: Colors.white,
+            width: double.infinity,
+            padding: const EdgeInsets.all(20),
+            child: const Column(
+              children: [
+                Text("Saldo global disponible", textAlign: TextAlign.left),
+                Divider(),
+                SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        Text("\$50,000.00", style: TextStyle(fontSize: 20)),
+                        Text("Saldo disponible \n para tienda",
+                            textAlign: TextAlign.center),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Text("\$50,000.00", style: TextStyle(fontSize: 20)),
+                        Text("Saldo disponible \n para financiero",
+                            textAlign: TextAlign.center),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
           const SizedBox(height: 15),
           Container(
               color: Colors.white,
@@ -130,6 +135,3 @@ class HomeView extends StatelessWidget {
     );
   }
 }
-
-
-// Define más páginas de administrador de manera similar
