@@ -5,7 +5,6 @@ import 'package:vales_app/features/admin/presentation/screens/home_screen.dart';
 import 'package:vales_app/features/auth/presentation/providers/auth_provider.dart';
 import 'package:vales_app/features/auth/presentation/screens/check_auth_status_screen.dart';
 import 'package:vales_app/features/auth/presentation/screens/login_screen.dart';
-
 final goRouterProvider = Provider((ref) {
   final goRouterNotifier = ref.read(goRouterNotifierProvider);
 
