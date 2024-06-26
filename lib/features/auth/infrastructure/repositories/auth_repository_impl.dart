@@ -1,11 +1,12 @@
 import 'package:vales_app/features/auth/domain/domain.dart';
+// import 'package:vales_app/features/shared/domain/entities/user_info.dart';
 
 import '../infrastructure.dart';
 
 class AuthRepositoryImpl extends AuthRepository {
-  final AuthDataSource dataSource;
+  final AuthDatasource dataSource;
 
-  AuthRepositoryImpl({AuthDataSource? dataSource})
+  AuthRepositoryImpl({AuthDatasource? dataSource})
       : dataSource = dataSource ?? AuthDataSourceImpl();
 
   @override

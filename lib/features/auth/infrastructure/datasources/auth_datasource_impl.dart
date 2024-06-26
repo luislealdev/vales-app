@@ -3,7 +3,7 @@ import 'package:vales_app/config/constants/environment.dart';
 import 'package:vales_app/features/auth/domain/domain.dart';
 import 'package:vales_app/features/auth/infrastructure/infrastructure.dart';
 
-class AuthDataSourceImpl extends AuthDataSource {
+class AuthDataSourceImpl extends AuthDatasource {
   final dio = Dio(BaseOptions(
     baseUrl: Environment.apiUrl,
   ));
@@ -40,6 +40,7 @@ class AuthDataSourceImpl extends AuthDataSource {
     try {
       final response = await dio
           .post('/auth/login', data: {'email': email, 'password': password});
+          print(response.data);
       final user = UserMapper.userJsonToEntity(response.data);
       return user;
     } on DioException catch (e) {

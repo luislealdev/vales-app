@@ -35,12 +35,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
     } catch (e) {
       logout('Correo o contraseña incorrectos');
     }
-
-    // final user = await authRepository.login(email, password);
-    // state =state.copyWith(user: user, authStatus: AuthStatus.authenticated)
   }
-
-  void registerUser(String email, String password) async {}
 
   void checkAuthStatus() async {
     final token = await keyValueStorageService.getValue<String>('token');
@@ -48,6 +43,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
 
     try {
       final user = await authRepository.checkAuthStatus(token);
+      print(user);
       _setLoggedUser(user);
     } catch (e) {
       logout();
@@ -81,18 +77,21 @@ class AuthState {
   final User? user;
   final String errorMessage;
 
-  AuthState(
-      {this.authStatus = AuthStatus.checking,
-      this.user,
-      this.errorMessage = ''});
+  AuthState({
+    this.authStatus = AuthStatus.checking,
+    this.user,
+    this.errorMessage = '',
+  });
 
   AuthState copyWith({
     AuthStatus? authStatus,
     User? user,
     String? errorMessage,
-  }) =>
-      AuthState(
-          authStatus: authStatus ?? this.authStatus,
-          user: user ?? this.user,
-          errorMessage: errorMessage ?? this.errorMessage);
+  }) {
+    return AuthState(
+      authStatus: authStatus ?? this.authStatus,
+      user: user ?? this.user,
+      errorMessage: errorMessage ?? this.errorMessage,
+    );
+  }
 }
