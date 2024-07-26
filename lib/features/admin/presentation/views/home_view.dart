@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:vales_app/features/auth/presentation/providers/auth_provider.dart';
+import 'package:vales_app/features/user/presentation/providers/user_info_provider.dart';
 
 class HomeView extends ConsumerWidget {
   const HomeView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final authState = ref.watch(authProvider);
+    final user = ref.watch(userInfoProvider).userInfo;
+    print(user);
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20.0),
@@ -25,11 +26,11 @@ class HomeView extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      authState.user?.name ?? 'Nombre del usuario',
+                      user?.name ?? 'Nombre del usuario',
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      authState.user?.email ?? 'Correo electrónico del usuario',
+                      user?.email ?? 'Correo electrónico del usuario',
                       style: const TextStyle(fontSize: 12),
                     ),
                   ],

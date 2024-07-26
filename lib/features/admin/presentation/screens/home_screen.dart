@@ -14,7 +14,7 @@ import 'package:vales_app/features/admin/presentation/views/points_view.dart';
 import 'package:vales_app/features/admin/presentation/views/terms_conditions_view.dart';
 import 'package:vales_app/features/admin/presentation/views/tools_view.dart';
 import 'package:vales_app/features/admin/presentation/views/with_me_view.dart';
-import 'package:vales_app/features/shared/widgets/side_menu.dart';
+import 'package:vales_app/features/shared/presentation/widgets/side_menu.dart';
 
 class HomeScreen extends StatefulWidget {
   static const name = 'home-screen';

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vales_app/features/auth/presentation/providers/auth_provider.dart';
 import 'package:vales_app/features/shared/shared.dart';
+import 'package:vales_app/features/user/presentation/providers/address_provider.dart';
+import 'package:vales_app/features/user/presentation/providers/user_info_provider.dart';
 
 class ProfileView extends ConsumerWidget {
   const ProfileView({super.key});
@@ -10,13 +12,13 @@ class ProfileView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final authState = ref.watch(authProvider);
+    final user = ref.watch(userInfoProvider).userInfo;
+    final address = ref.watch(addressProvider).address;
 
     if (authState.authStatus != AuthStatus.authenticated ||
         authState.user == null) {
       return const Center(child: CircularProgressIndicator());
     }
-
-    final user = authState.user!;
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(30.0),
@@ -29,7 +31,7 @@ class ProfileView extends ConsumerWidget {
                 const SizedBox(height: 30),
                 const Text("Nombre"),
                 Text(
-                  "${user.name} ${user.secondName} ${user.firstLastName} ${user.secondLastName}",
+                  "${user?.name} ${user?.secondName} ${user?.firstLastName} ${user?.secondLastName}",
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 100),
@@ -44,7 +46,7 @@ class ProfileView extends ConsumerWidget {
           const SizedBox(height: 15),
           WhiteCard(
             child: _ProfileCardInfo(
-              text: user.phone,
+              text: user!.phone,
               description: "Celular",
               icon: Icons.phone_android,
               edit: true,
@@ -54,7 +56,7 @@ class ProfileView extends ConsumerWidget {
           WhiteCard(
             child: _ProfileCardInfo(
               text:
-                  "${user.address.street} ${user.address.number} ${user.address.neighborhood} ${user.address.city} ${user.address.state} ${user.address.zip}",
+                  "${address?.street} ${address?.number} ${address?.neighborhood} ${address?.city} ${address?.state} ${address?.zipCode}",
               description: "Dirección",
               icon: Icons.location_on_sharp,
               edit: false,

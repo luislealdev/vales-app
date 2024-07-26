@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vales_app/features/auth/presentation/providers/providers.dart';
 import 'package:vales_app/features/shared/shared.dart';
-import 'package:vales_app/features/shared/widgets/custom_text_form_field.dart';
 
 class LoginScreen extends StatelessWidget {
   static const name = 'login-screen';

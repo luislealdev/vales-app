@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vales_app/features/shared/shared.dart';
-import 'package:vales_app/features/shared/widgets/stat_row.dart';
+import 'package:vales_app/features/shared/presentation/widgets/stat_row.dart';
 
 class PointsView extends StatelessWidget {
   const PointsView({super.key});
