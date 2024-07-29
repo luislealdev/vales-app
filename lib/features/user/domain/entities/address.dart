@@ -2,19 +2,23 @@ class Address {
   final String id;
   final String userId;
   final String street;
+  final String number;
   final String city;
   final String state;
   final String country;
-  final String postalCode;
+  final String zipCode;
+  final String neighborhood;
 
   Address({
     required this.id,
+    required this.number,
     required this.userId,
     required this.street,
     required this.city,
     required this.state,
     required this.country,
-    required this.postalCode,
+    required this.zipCode,
+    required this.neighborhood,
   });
 
   factory Address.fromJson(Map<String, dynamic> json) {
@@ -22,18 +26,14 @@ class Address {
       id: json['id'],
       userId: json['user_id'],
       street: json['street'],
+      number: json['number'],
       city: json['city'],
       state: json['state'],
+      neighborhood: json['neighborhood'],
       country: json['country'],
-      postalCode: json['postal_code'],
+      zipCode: json['zip_code'],
     );
   }
-
-  get number => null;
-
-  get neighborhood => null;
-
-  get zipCode => null;
 
   Map<String, dynamic> toJson() {
     return {
@@ -43,7 +43,9 @@ class Address {
       'city': city,
       'state': state,
       'country': country,
-      'postal_code': postalCode,
+      'zip_code': zipCode,
+      'neighborhood': neighborhood,
+      'number': number,
     };
   }
 }

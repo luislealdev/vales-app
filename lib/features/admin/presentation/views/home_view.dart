@@ -8,7 +8,6 @@ class HomeView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(userInfoProvider).userInfo;
-    print(user);
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20.0),

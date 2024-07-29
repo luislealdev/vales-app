@@ -8,8 +8,8 @@ class AddressRepositoryImpl extends AddressRepository {
   AddressRepositoryImpl(this.datasource);
 
   @override
-  Future<Address> getAddress(String userId) {
-    return datasource.getAddress(userId);
+  Future<Address> getAddress(String token) {
+    return datasource.getAddress(token);
   }
 
   @override

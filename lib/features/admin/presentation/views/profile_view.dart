@@ -27,7 +27,8 @@ class ProfileView extends ConsumerWidget {
           WhiteCard(
             child: Column(
               children: [
-                const Icon(Icons.face_3, size: 150),
+                Icon(user?.gender == 'FEMALE' ? Icons.face_3 : Icons.face_6,
+                    size: 150),
                 const SizedBox(height: 30),
                 const Text("Nombre"),
                 Text(

@@ -7,9 +7,9 @@ class AddressDatasourceImpl extends AddressDatasource {
 
   @override
   Future<Address> getAddress(String token) async {
-    final response = await dio.get('/address',
-        options: Options(headers: {'Authorization': token}));
-    return Address.fromJson(response.data);
+    final response = await dio.get('http://localhost:3000/address',
+        options: Options(headers: {'Authorization': 'Bearer $token'}));
+    return Address.fromJson(response.data['address']);
   }
 
   @override
